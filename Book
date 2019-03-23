@@ -20,7 +20,7 @@ class Book {
         $this->datePublished = $datePublished; 
         $this->language = $language; 
         $this->genre = $genre; 
-        $this->loanLength = $loanLength;
+        $this->loanLength = 3;
         $this->location = $location;
         $this->status = $status;  
     }
