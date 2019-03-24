@@ -124,6 +124,10 @@ class Ebook extends Book {
     private function get_fileSize(){
         return $this->fileSize;
     }
+    
+     public function get_format() {
+        return $this->format;
+    }
 }
 
 class Pamphlet extends Book {
