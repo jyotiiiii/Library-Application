@@ -13,7 +13,7 @@ class Book {
     public $location;
     public $status;
     
-    public function __construct($title,$author,$publisher,$datePublished,$language,$genre,$loanLength,$location,$status) {
+    public function __construct($title,$author,$publisher,$datePublished,$language,$genre,$location,$status) {
         $this->title = $title;    
         $this->author = $author; 
         $this->publisher = $publisher; 
