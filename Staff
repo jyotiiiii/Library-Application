@@ -1,0 +1,33 @@
+<?php
+
+class staff {
+    private $staffID;
+    public $jobTitle;
+    private $salary;
+    protected $startDate;
+    protected $contractType;
+    
+    
+        public function __construct($staffID, $jobTitle, $salary, $startDate, $contractType) {
+            $this->staffID = $staffID;
+            $this->jobTitle = $jobTitle;
+            $this->salary = $salary;
+            $this->startDate = $startDate;
+            $this->contractType = $contractType;    
+        }
+        
+        private function get_staffID(){
+            return $this->staffID;
+        }    
+        
+        public function get_jobTitle(){
+            return $this->jobTitle;
+        }
+        
+        protected function set_contractType($newContract){
+            $this->contractType = $newContract;
+            echo "New contract status is: " . $newContract;
+        }
+
+}
+
