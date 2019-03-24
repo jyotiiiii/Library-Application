@@ -150,6 +150,14 @@ class Pamphlet extends Book {
       $this->artist = $newArtist;
     }
     
+    public function set_editor($newEditor) {
+        $this->editor = $newEditor;
+    }
+    
+    public function get_editor(){
+        return $this->editor;
+    }
+    
     private function get_Artist(){
         return $this->artist;
     }
