@@ -1,0 +1,34 @@
+<?php
+
+class loan{
+    public $loanId;
+    public $bookId;
+    public $memberId;
+    public $loanStatus;
+    public $dueDate;
+
+public function __construct($loanId, $bookId, $memberId, $loanStatus, $dueDate) {
+                    $this->loanId = $loanId;
+                    $this->bookId = $bookId;
+                    $this->memberId = $memberId;
+                    $this->loanStatus = $loanStatus;
+                    $this->dueDate = $dueDate;
+}
+
+public function get_loanDetails(){
+    $loanDetails = "Book ID: $this->bookId <br>
+                    Member ID: $this->memberId <br>
+                    Book is due on: $this->dueDate <br>";
+
+    echo "$loanDetails";}
+   
+
+    
+    public function set_loanStatus ($newLoanStatus){
+        $this->loanStatus = $newLoanStatus;
+    }  
+
+    public function get_loanStatus() {
+        return $this->loanStatus;     
+    }    
+}
