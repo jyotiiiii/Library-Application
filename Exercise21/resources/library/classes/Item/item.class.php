@@ -1,6 +1,6 @@
 <?php
 
-class abstract Item {
+    abstract class Item {
     private $title;
     private $language;
     private $genre;
