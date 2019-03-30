@@ -63,20 +63,20 @@ class Book extends Item {
         }
     }  
         
-    public function searchByStatus($status) {        
-        if ($status !== "On shelf" OR $status !== "On loan" OR $status !== "No longer available") {
-            die(" Fatal error: Invalid Status");
-        } else {
+    public function searchByStatus($search){       
+        if ($search == "On shelf" OR $search == "On loan" OR $search == "No longer available") {
             foreach (Book::$Books as $book) {
             $strstr = strstr(strtolower($book->status),strtolower($search));
-            if (empty($strstr) !== TRUE) {
+                if (empty($strstr) !== TRUE) {
                   $searchResult = $book->getDetails() . PHP_EOL . PHP_EOL;
-                  echo $searchResult;
-            }
-//            else if (empty($searchResults) === TRUE)
-//               die("No titles found.");
+                  echo $searchResult;                 
+                } 
+            }  
+        } else {
+            die(" Fatal error: Invalid Status");
         }
-    } 
+    }
+        
     public function searchAvailableByTitle($search) {
         foreach (Book::$Books as $book) {
             $strstr = strstr(strtolower($book->title),strtolower($search));
