@@ -39,14 +39,14 @@ class DVD extends Item{
     }
     
     public function addNew($DVDID, $title, $director, $releaseDate, $language, $genre, $location, $loanLength, $status) {
-        $bookID = New Book();
+        $DVDID = New DVD();
     }
      
     public function searchByDirector($search) {
             foreach (DVD::$DVDs as $DVD) {
                 $strstr = strstr(strtolower($DVD->director),strtolower($search));
                 if (empty($strstr) !== TRUE) {
-                    $searchResult = $book->getDetails() . PHP_EOL . PHP_EOL;
+                    $searchResult = $DVD->getDetails() . PHP_EOL . PHP_EOL;
                     echo $searchResult;
          }
 //            else if (empty($searchResults) === TRUE)
@@ -54,11 +54,11 @@ class DVD extends Item{
         }
     }  
         
-    public function searchByTitle($title) {
+    public function searchByTitle($search) {
             foreach (DVD::$DVDs as $DVD) {
-                $strstr = strstr(strtolower($book->title),strtolower($search));
+                $strstr = strstr(strtolower($DVD->title),strtolower($search));
                 if (empty($strstr) !== TRUE) {
-                    $searchResult = $book->getDetails() . PHP_EOL . PHP_EOL;
+                    $searchResult = $DVD->getDetails() . PHP_EOL . PHP_EOL;
                     echo $searchResult;
          }
 //            else if (empty($searchResults) === TRUE)
@@ -66,11 +66,11 @@ class DVD extends Item{
         }
     }  
               
-    public function searchByLanguage($language) {
+    public function searchByLanguage($search) {
             foreach (DVD::$DVDs as $DVD) {
-                $strstr = strstr(strtolower($book->language),strtolower($search));
+                $strstr = strstr(strtolower($DVD->language),strtolower($search));
                 if (empty($strstr) !== TRUE) {
-                    $searchResult = $book->getDetails() . PHP_EOL . PHP_EOL;
+                    $searchResult = $DVD->getDetails() . PHP_EOL . PHP_EOL;
                     echo $searchResult;
          }
 //            else if (empty($searchResults) === TRUE)
@@ -78,14 +78,13 @@ class DVD extends Item{
         }
     }       
         
-    public function searchByGenre($genre) {
-        public function searchByGenre($search) {
-            foreach (DVD::$DVDs as $DVD) {
-                $strstr = strstr(strtolower($book->genre),strtolower($search));
-                if (empty($strstr) !== TRUE) {
-                    $searchResult = $book->getDetails() . PHP_EOL . PHP_EOL;
-                    echo $searchResult;
-         }
+    public function searchByGenre($search) {
+        foreach (DVD::$DVDs as $DVD) {
+            $strstr = strstr(strtolower($DVD>genre),strtolower($search));
+            if (empty($strstr) !== TRUE) {
+                $searchResult = $DVD->getDetails() . PHP_EOL . PHP_EOL;
+                echo $searchResult;
+             }
 //            else if (empty($searchResults) === TRUE)
 //               die("No titles found.");
         }
@@ -94,9 +93,9 @@ class DVD extends Item{
     public function searchByStatus($search){       
         if ($search == "On shelf" OR $search == "On loan" OR $search == "No longer available") {
             foreach (DVD::$DVDs as $DVD) {
-            $strstr = strstr(strtolower($book->status),strtolower($search));
+            $strstr = strstr(strtolower($DVD->status),strtolower($search));
                 if (empty($strstr) !== TRUE) {
-                  $searchResult = $book->getDetails() . PHP_EOL . PHP_EOL;
+                  $searchResult = $DVD->getDetails() . PHP_EOL . PHP_EOL;
                   echo $searchResult;                 
                 } 
             }  
@@ -107,9 +106,9 @@ class DVD extends Item{
         
     public function searchAvailableByTitle($search) {
             foreach (DVD::$DVDs as $DVD) {
-            $strstr = strstr(strtolower($book->title),strtolower($search));
-            if (empty($strstr) !== TRUE && $book->status == "On shelf") {
-                  $searchResult = $book->getDetails() . PHP_EOL . PHP_EOL;
+            $strstr = strstr(strtolower($DVD->title),strtolower($search));
+            if (empty($strstr) !== TRUE && $DVD>status == "On shelf") {
+                  $searchResult = $DVD->getDetails() . PHP_EOL . PHP_EOL;
                   echo $searchResult;
             }
 //            else if (empty($searchResults) === TRUE)
@@ -119,9 +118,9 @@ class DVD extends Item{
         
     public function searchByAvailableByDirector($search) {
             foreach (DVD::$DVDs as $DVD) {
-            $strstr = strstr(strtolower($book->director),strtolower($search));
-            if (empty($strstr) !== TRUE && $book->status == "On shelf") {
-                  $searchResult = $book->getDetails() . PHP_EOL . PHP_EOL;
+            $strstr = strstr(strtolower($DVD->director),strtolower($search));
+            if (empty($strstr) !== TRUE && $DVD->status == "On shelf") {
+                  $searchResult = $DVD->getDetails() . PHP_EOL . PHP_EOL;
                   echo $searchResult;
             }
 //            else if (empty($searchResults) === TRUE)
@@ -130,4 +129,3 @@ class DVD extends Item{
     }     
         
 }
-    
