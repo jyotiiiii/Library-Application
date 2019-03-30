@@ -4,6 +4,8 @@ require_once "item.class.php";
 
 class Book extends Item {
     private $author;
+    private static $Books = array();
+
     
     public function __construct($title, $author, $language, $genre, $location, $loanLength, $location, $status) {
         $this->title = $title;
@@ -12,17 +14,14 @@ class Book extends Item {
         $this->genre = $genre;
         $this->location = $location;
         $this->status = $this->setStatus($status);
+        self::$Books[] = $this;
     }
             
     public function setStatus ($status) {
-        if ($status == "On shelf") {
-            $this->status = $status;
-        } else if ($status == "On loan") {
-            $this->status = $status;
-        } else if ($status == "No longer available") {
+        if ($status == "On shelf" OR $status =="On loan" OR $status == "No longer available") {
             $this->status = $status;
         } else { 
-            die(" Fatal error: Invalid Value");
+            die(" Fatal error: Invalid Status");
         }
         return $status;
     }
@@ -52,15 +51,54 @@ class Book extends Item {
        
         
     public function searchByGenre($genre) {
-      
+        public function searchByGenre($search) {
+            foreach (Book::$Books as $book) {
+                $strstr = strstr(strtolower($book->genre),strtolower($search));
+                if (empty($strstr) !== TRUE) {
+                    $searchResult = $book->getDetails() . PHP_EOL . PHP_EOL;
+                    echo $searchResult;
+         }
+//            else if (empty($searchResults) === TRUE)
+//               die("No titles found.");
+        }
+    }  
         
-    public function searchByStatus($status) {
-        
-        
+    public function searchByStatus($status) {        
+        if ($status !== "On shelf" OR $status !== "On loan" OR $status !== "No longer available") {
+            die(" Fatal error: Invalid Status");
+        } else {
+            foreach (Book::$Books as $book) {
+            $strstr = strstr(strtolower($book->status),strtolower($search));
+            if (empty($strstr) !== TRUE) {
+                  $searchResult = $book->getDetails() . PHP_EOL . PHP_EOL;
+                  echo $searchResult;
+            }
+//            else if (empty($searchResults) === TRUE)
+//               die("No titles found.");
+        }
+    } 
     public function searchAvailableByTitle($search) {
-        
+        foreach (Book::$Books as $book) {
+            $strstr = strstr(strtolower($book->title),strtolower($search));
+            if (empty($strstr) !== TRUE && $book->status == "On shelf") {
+                  $searchResult = $book->getDetails() . PHP_EOL . PHP_EOL;
+                  echo $searchResult;
+            }
+//            else if (empty($searchResults) === TRUE)
+//               die("No titles found.");
+        }
+    }  
         
     public function searchByAvailableByAuthor($search) {
-        
+        foreach (Book::$Books as $book) {
+            $strstr = strstr(strtolower($book->author),strtolower($search));
+            if (empty($strstr) !== TRUE && $book->status == "On shelf") {
+                  $searchResult = $book->getDetails() . PHP_EOL . PHP_EOL;
+                  echo $searchResult;
+            }
+//            else if (empty($searchResults) === TRUE)
+//               die("No titles found.");
+        }
+    }     
         
 }
