@@ -16,7 +16,10 @@ class Book extends Item {
         $this->status = $this->setStatus($status);
         self::$Books[] = $this;
     }
-            
+ 
+    //would the 'use updatingStatusTrait' now overide this - The below may not need to be in the class now?
+    
+    
     public function setStatus ($status) {
         if ($status == "On shelf" OR $status =="On loan" OR $status == "No longer available") {
             $this->status = $status;
