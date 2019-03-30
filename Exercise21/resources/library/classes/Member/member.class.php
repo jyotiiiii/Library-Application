@@ -34,11 +34,11 @@ class Member {
         return $this->dob;
     }
     
-    public function get_email(){
+    public function getEmail(){
             return $this->email;
         }
 
-    public function get_address(){
+    public function getAddress(){
             return $this->address;
     }
     
