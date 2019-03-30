@@ -13,3 +13,8 @@ interface genreSearch {
 interface statusSearch {
     public function searchByStatus(string $status);
 }
+
+interface addNew {
+public function addnew();
+} 
+//Testing in terms of whether this will work without the parameters listed -
