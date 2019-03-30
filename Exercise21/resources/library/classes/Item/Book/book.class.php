@@ -6,12 +6,13 @@ class Book extends Item {
     private $author;
     private static $Books = array();
 
-    public function __construct($title, $author, $language, $genre, $location, $loanLength, $location, $status) {
+    public function __construct($title, $author, $language, $genre, $location, $loanLength, $status) {
         $this->title = $title;
         $this->author = $author; 
         $this->language = $language;
         $this->genre = $genre;
         $this->location = $location;
+        $this->loanLength = 3;
         $this->status = $this->setStatus($status);
         self::$Books[] = $this;
     }
@@ -36,7 +37,7 @@ class Book extends Item {
         echo $details;
     }
     
-    public function addNew($bookID, $title, $author, $language, $genre, $location, $loanLength, $location, $status) {
+    public function addNew($bookID, $title, $author, $language, $genre, $location, $loanLength, $status) {
         $bookID = New Book();
     }
      
