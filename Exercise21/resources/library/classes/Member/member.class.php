@@ -3,18 +3,20 @@
 require_once "member.class.php";
 
 class Member {
-    public $firstName;
-    public $lastName;
+    private $firstName;
+    private $lastName;
     private $dob;
     private $email;
     private $address;
+    private $phone;
     
-    public function __construct($firstName, $lastName, $dob, $email, $address){
+    public function __construct($firstName, $lastName, $dob, $email, $address, $phone){
         $this->firstName = $firstName;
         $this->lastName = $lastName;
         $this->dob = $dob;
         $this->email = $email;
         $this->address = $address;
+        $this->phone = $phone;
     }
     
     public function fullName() {
@@ -39,5 +41,12 @@ class Member {
     public function get_address(){
             return $this->address;
     }
+    
+    public function setEmail ($email){
+        $this->email = $email;
+    }
+    
+    public function setPhone ($phone){
+        $this->phone = $phone;   
 }
 
