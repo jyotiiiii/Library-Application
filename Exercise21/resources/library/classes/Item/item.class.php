@@ -12,9 +12,15 @@ class abstract Item {
     
     public abstract function getDetails();
     
-    public abstract function borrowItem($member);
-    
-    public abstract function returnItem($member);
+    public function borrowItem ($member) {
+    $this->setStatus("On loan");
+    echo $this->getTitle() ." has been borrowed by $memberID->firstName $memberID->lastName on " . date('d/m/Y') . "<br>"; 
+    }
+        
+    public function returnItem ($member) {
+    $this->setStatus("On shelf");
+    echo $this->getTitle() ." has been returned by $memberID->firstName $memberID->lastName on " . date('d/m/Y') . "<br>";
+    }   
     
     public function getLocation() {
         echo  $itemLocation = "The location for '$this->title' is: $this->location.";
