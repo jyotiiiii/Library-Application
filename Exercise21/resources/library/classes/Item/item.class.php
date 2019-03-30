@@ -1,6 +1,6 @@
 <?php
 
-class Item {
+class abstract Item {
     private $title;
     private $language;
     private $genre;
@@ -17,8 +17,7 @@ class Item {
         $this->status = $status;
     }
     
-    public function set_status ($newStatus) {
-      $this->status = $newStatus;
+    public abstract function set_status ($newStatus) {
     }
    
     public function get_status() {
