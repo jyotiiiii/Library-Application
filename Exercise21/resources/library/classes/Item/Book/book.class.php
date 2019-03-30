@@ -6,7 +6,6 @@ class Book extends Item {
     private $author;
     private static $Books = array();
 
-    
     public function __construct($title, $author, $language, $genre, $location, $loanLength, $location, $status) {
         $this->title = $title;
         $this->author = $author; 
@@ -42,13 +41,40 @@ class Book extends Item {
     }
      
     public function searchByAuthor($search) {
-        
+            foreach (Book::$Books as $book) {
+                $strstr = strstr(strtolower($book->author),strtolower($search));
+                if (empty($strstr) !== TRUE) {
+                    $searchResult = $book->getDetails() . PHP_EOL . PHP_EOL;
+                    echo $searchResult;
+         }
+//            else if (empty($searchResults) === TRUE)
+//               die("No titles found.");
+        }
+    }  
         
     public function searchByTitle($title) {
-      
-        
+            foreach (Book::$Books as $book) {
+                $strstr = strstr(strtolower($book->title),strtolower($search));
+                if (empty($strstr) !== TRUE) {
+                    $searchResult = $book->getDetails() . PHP_EOL . PHP_EOL;
+                    echo $searchResult;
+         }
+//            else if (empty($searchResults) === TRUE)
+//               die("No titles found.");
+        }
+    }  
+              
     public function searchByLanguage($language) {
-       
+            foreach (Book::$Books as $book) {
+                $strstr = strstr(strtolower($book->language),strtolower($search));
+                if (empty($strstr) !== TRUE) {
+                    $searchResult = $book->getDetails() . PHP_EOL . PHP_EOL;
+                    echo $searchResult;
+         }
+//            else if (empty($searchResults) === TRUE)
+//               die("No titles found.");
+        }
+    }       
         
     public function searchByGenre($genre) {
         public function searchByGenre($search) {
