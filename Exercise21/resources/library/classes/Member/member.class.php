@@ -3,8 +3,8 @@
 require_once "member.class.php";
 
 class Member {
-    public $firstName;
-    public $lastName;
+    private $firstName;
+    private $lastName;
     private $dob;
     private $email;
     private $address;
