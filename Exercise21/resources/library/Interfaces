@@ -1,0 +1,15 @@
+ interface titleSearch {
+ public function searchByTitle(string $title); 
+}
+
+interface languageSearch {
+    public function searchByLanguage(string $language);    
+}
+
+interface genreSearch {
+    public function searchByGenre(string $genre);
+}
+
+interface statusSearch {
+    public function searchByStatus(string $status);
+}
