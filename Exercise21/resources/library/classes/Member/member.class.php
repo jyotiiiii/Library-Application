@@ -47,6 +47,7 @@ class Member {
     }
     
     public function setPhone ($phone){
-        $this->phone = $phone;   
+        $this->phone = $phone;  
+    }
 }
 
