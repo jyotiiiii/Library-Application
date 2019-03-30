@@ -53,7 +53,7 @@ class Book extends Item {
         }
     }  
         
-    public function searchByTitle($title) {
+    public function searchByTitle($search) {
             foreach (Book::$Books as $book) {
                 $strstr = strstr(strtolower($book->title),strtolower($search));
                 if (empty($strstr) !== TRUE) {
@@ -65,7 +65,7 @@ class Book extends Item {
         }
     }  
               
-    public function searchByLanguage($language) {
+    public function searchByLanguage($search) {
             foreach (Book::$Books as $book) {
                 $strstr = strstr(strtolower($book->language),strtolower($search));
                 if (empty($strstr) !== TRUE) {
@@ -77,8 +77,7 @@ class Book extends Item {
         }
     }       
         
-    public function searchByGenre($genre) {
-        public function searchByGenre($search) {
+    public function searchByGenre($search) {
             foreach (Book::$Books as $book) {
                 $strstr = strstr(strtolower($book->genre),strtolower($search));
                 if (empty($strstr) !== TRUE) {
