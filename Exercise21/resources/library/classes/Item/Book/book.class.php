@@ -1,16 +1,20 @@
 <?php
-//Rosa
-//namespace Classes\Book;
+
 require_once "item.class.php";
 
 class Book extends Item {
     private $author;
     
         public function __construct($title, $author, $language, $genre, $location, $loanLength, $location, $status) {
-        item::__construct($title, $language, $genre, $location, $loanLength, $location, $status);
+            $this->title = $title;
             $this->author = $author; 
+            $this->language = $language;
+            $this->genre = $genre;
+            $this->location = $location;
+            $this->status = $this->setStatus($status);
 }
-        public function get_details() {
+    
+        public function getDetails() {
         $details = "Book details: \n
                 '$this->title' \n
                 Author: $this->author \n
@@ -34,13 +38,5 @@ class Book extends Item {
         return $status;
     }
 
-    public function borrowBook ($memberID) {
-    $this->setStatus("On loan");
-    echo $this->getTitle() ." has been borrowed by $memberID->firstName $memberID->lastName on " . date('d/m/Y') . "<br>"; 
-    }
-        
-    public function returnBook ($memberID) {
-    $this->setStatus("On shelf");
-    echo $this->getTitle() ." has been returned by $memberID->firstName $memberID->lastName on " . date('d/m/Y') . "<br>";
-    }   
+
 }
