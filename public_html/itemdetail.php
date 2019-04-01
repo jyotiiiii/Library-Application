@@ -13,6 +13,8 @@ and open the template in the editor.
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
         <link rel="stylesheet" href="../css/stylesheet.css">
         <link rel="shortcut icon" href="../images/favicon.ico" type="image/x-icon">
+        <link href="https://fonts.googleapis.com/css?family=Roboto|Lato|ZCOOL+XiaoWei" rel="stylesheet">
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
     </head>
     <body>       
  <?php 
