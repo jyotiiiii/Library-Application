@@ -1,7 +1,7 @@
 <?php
 
 namespace classes;
-include_once 'C:\xampp\htdocs\Exercise21\public_html\php\updatingStatusTrait.php';
+include_once 'C:\xampp\htdocs\Exercise21\php\updatingStatusTrait.php';
 
 
     abstract class Item {
