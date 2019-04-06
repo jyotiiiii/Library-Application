@@ -1,6 +1,6 @@
 <?php
 namespace classes\Item;
-include_once 'C:\xampp\htdocs\Exercise21\public_html\php\Interfaces.php';
+include_once 'C:\xampp\htdocs\Exercise21\php\Interfaces.php';
 
 $newPath = dirname(__DIR__) . DIRECTORY_SEPARATOR ;
 set_include_path(get_include_path() . PATH_SEPARATOR . $newPath);
