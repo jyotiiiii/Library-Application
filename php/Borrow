@@ -1,0 +1,54 @@
+<?php
+
+const DB_DSN = 'mysql: host = localhost; dbname=Exercise18V15';
+const DB_USER = 'root';
+const DB_PASS = '';
+
+try {
+    $connection = new PDO (DB_DSN, DB_USER, DB_PASS);}
+catch (Exception $e){
+    error_log($e->getMessage());
+    exit('Sorry! Something went Wrong!');    
+}
+
+$bookID = '9';
+$memberID = '1';
+
+$statusCheckSQL = "SELECT * FROM book WHERE status = 'on shelf' AND book_id = $bookID";
+$statusCheckSQLResult = $connection->prepare($statusCheckSQL); 
+
+$statusCheckSQLResult->execute();
+$number_of_rows = $statusCheckSQLResult->fetchColumn(); 
+
+if ($number_of_rows === FALSE){
+    
+    echo "this book is on loan";
+    
+} else{
+    
+    $loanBookSQL = "INSERT INTO loanbook(book_id, member_id, loan_start, loan_end, loan_status)
+       VALUES($bookID, $memberID, NOW(),(DATE_ADD(NOW(), INTERVAL 21 DAY)), 1);";
+    
+    $updateBookSQL = "UPDATE book
+     SET status= 'on loan'
+       WHERE book_id = $bookID;";
+    
+//    $getLoanEndDateSQL = "SELECT loan_end FROM loanbook
+// WHERE book_id = $bookID AND loan_status = 1;";
+    
+    
+    
+    $loanBookSQLResult = $connection->prepare($loanBookSQL);
+    $updateBookSQLResult = $connection->prepare($updateBookSQL);
+//    $getLoanEndDateResult = $connection->prepare($getLoanEndDateSQL);
+
+    
+    $loanBookSQLResult->execute();
+    $updateBookSQLResult->execute();
+//    $getLoanEndDateResult->execute();
+
+    
+    
+    echo "this book has been taken on loan."
+    
+}
