@@ -12,27 +12,40 @@ and open the template in the editor.
         <!-- Bootstrap CSS -->
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
         <link href="../css/stylesheet.css" rel="stylesheet" type="text/css"/>
-        <link rel="shortcut icon" href="../images/layout/favicon.ico" type="image/x-icon">
+        <link rel="shortcut icon" href="../images/layout/favicon-16x16.png" type="image/x-icon">
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
         <link href="https://fonts.googleapis.com/css?family=Roboto|Lato|ZCOOL+XiaoWei" rel="stylesheet">
     </head>
     <body>
  <?php 
- require_once 'header.php';
+ session_start();
+         if(isset($_SESSION["username"]))  {
+            include_once("headerlogin.php");
+        }else{
+            include_once("header.php");
+        }
  ?>
 
       <div class="jumbotron">
         <div class="container justify-content-center">
           <h1 style="color: #871570;" class="display-3">Welcome to the Library!</h1>
-          <form class="search-query input-mysize" role="search">
-    <div class="input-group input-large search-query add-on">
-      <input class="form-control" placeholder="Search by Title or Author" name="srch-term" id="srch-term" type="text">
-      <div class="input-group-btn">
-        <button class="btn btn-default" type="submit"><i class="glyphicon glyphicon-search"></i></button>
+          <form class="form-inline search-query input-mysize" method="post" action="search.php" role="search">
+    <div class="input-group search-query add-on" style="width:80%">
+      <input class="form-control input-large" placeholder="Enter your search term here" name="srch-term" id="srch-term" type="text">
       </div>
-    </div>
+              <br>
+      <div class="input-group radio-inline">
+          <label><input type="radio" name="opt[]" value="title" required><span style="color:#871570">Search by Title</span></label>
+      </div>
+      <div class="input-group radio-inline">
+          <label><input type="radio" name="opt[]" value="author"><span style="color:#871570">Search by Author</span></label>
+      </div>
+       <div class="input-group-btn">
+        <button class="btn btn-default" name="submit" type="submit">SEARCH</button>
+      </div>
   </form>
-          <br><a class="btn btn-info btn-lg" style="color: black;" href="#" role="button">View the full catalogue &raquo;</a></p>
+          <br>
+          <a class="btn btn-info btn-lg" style="color: black;" href="#" role="button">View the full catalogue &raquo;</a></p>
         </div>
       </div>
 
