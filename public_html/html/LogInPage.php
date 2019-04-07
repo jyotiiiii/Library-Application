@@ -12,28 +12,75 @@
     </head>
     <body>
     <?php 
- require_once 'header.php';
+    session_start();
+ require_once 'header.php'; 
+ $host = "localhost";  
+ $username = "root";  
+ $password = "";  
+ $database = "exercise22";  
+ $message = "";  
+    try {  
+      $connect = new PDO("mysql:host=$host; dbname=$database", $username, $password);  
+      $connect->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);  
+      if(isset($_POST["login"]))  
+      {  
+           if(empty($_POST["username"]) || empty($_POST["password"]))  
+           {  
+                $message = '<label>All fields are required</label>';  
+           }  
+           else  
+           {  
+                $query = "SELECT * FROM users WHERE username = :username AND password = :password";  
+                $statement = $connect->prepare($query);  
+                $statement->execute(  
+                     array(  
+                          'username'     =>     $_POST["username"],  
+                          'password'     =>     $_POST["password"]  
+                     )  
+                );  
+                $count = $statement->rowCount();  
+                if($count > 0)  
+                {  
+                     $_SESSION["username"] = $_POST["username"];  
+                     header("location:LogInSuccess.php");  
+                }  
+                else  
+                {  
+                     $message = '<label>Wrong username/password </label>';  
+                }  
+           }  
+      }  
+ }  
+ catch(PDOException $error)  {  
+      $message = $error->getMessage();  
+ }  
  ?>
     <div class="login" style="margin-top: 80px;">
   <h2 class="text-center">Log In To Whakatane Public Library</h2>
+  
   <div id="login-row" class="row justify-content-center align-items-center">
       <div id="login-column" class="col-md-6 col-md-offset-3">
                     <div id="login-box" class="col-md-6 col-md-offset-3">
-   <form action="ErrorLogin.php" method="post">
-    <div class="form-group">
-      <label for="email">Username:</label>
-      <input type="text" class="form-control" id="username" placeholder="Username" name="Username" autofocus="true">
-    </div>
-    <div class="form-group">
-      <label for="pwd">Password:</label>
-      <input type="password" class="form-control" id="pwd" placeholder="Enter password" name="pwd">
-    </div>
-    <div class="checkbox">
-      <label><input type="checkbox" name="remember"> Remember me</label>
-    </div>
-    <button type="submit" class="btn btn-default">Submit</button>
-    <button type="submit" class="btn btn-default">Register</button>
-  </form>
+                <form method="post">  
+                     <label>Username</label>  
+                     <input type="text" name="username" class="form-control" />  
+                     <br />  
+                     <label>Password</label>  
+                     <input type="password" name="password" class="form-control" />  
+                     <br /> 
+      <div class="clearfix">
+          <input type="submit" name="login" class="btn btn-info" value="Login" /> 
+          <input type="submit" formaction="register.php" value="Register" class="btn btn-info"/> 
+      </div>
+        <h2> 
+         <?php  
+                if(isset($message))  
+                {  
+                     echo '<label class="text-danger">'.$message.'</label>';  
+                }  
+        ?>
+        </h2>               
+                </form>  
         </div>
      </div>
   </div>
@@ -43,3 +90,4 @@
  ?> 
   </body>
 </html>
+
