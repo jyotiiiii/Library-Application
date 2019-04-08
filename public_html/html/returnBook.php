@@ -41,27 +41,10 @@ and open the template in the editor.
                         $memberID = $statement->fetch();
                         $memberID = $memberID['member_ID'];
 
-                        $selectBook = "SELECT book_id, title
-                            FROM book WHERE
-                            book_id = $bookID";
-                        $updateLoan = "UPDATE loanbook
-                            SET loan_status= 0
-                            WHERE loanbook.book_id = $bookID";
-                        $updateLoan2 = "UPDATE loanbook 
-                            SET loan_end = NOW()
-                            WHERE loanbook.book_id = $bookID";
-                        $updateBook = "UPDATE book
-                            SET status= 'on shelf'
-                            WHERE book_id = $bookID";
-                        
-                        $bookDetails = $pdo->prepare($selectBook);
-                        $loanStatus = $pdo->prepare($updateLoan);
-                        $loanEnd = $pdo->prepare($updateLoan2);
-                        $bookStatus = $pdo->prepare($updateBook);
-                        $bookDetails->execute();
-                        $loanStatus->execute();
-                        $loanEnd->execute();
-                        $bookStatus->execute();
+                    $returnBook = $pdo->prepare("CALL returnBook(?)");
+                    $returnBook->bindParam(1, $bookID);
+                    $returnBook->bindParam(2, $memberID)
+                    $returnBook->execute();
                         echo "<br>" . "<h2>Book returned successfully <br>";
                 } catch (PDOException $e) {
                     die($e->getMessage());
