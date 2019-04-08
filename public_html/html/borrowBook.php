@@ -54,17 +54,10 @@ and open the template in the editor.
                 if ($number_of_rows === FALSE) {
                     echo "This book is currently not available";
                 } else {
-                    $loanBookSQL = "INSERT INTO loanbook(book_id, member_id, loan_start, loan_end, loan_status)
-       VALUES($bookID, $memberID, NOW(),(DATE_ADD(NOW(), INTERVAL 21 DAY)), 1);";
-                    $updateBookSQL = "UPDATE book SET status= 'on loan' WHERE book.book_id = $bookID";
-
-                    $loanBookSQLResult = $pdo->prepare($loanBookSQL);
-                    $updateBookSQLResult = $pdo->prepare($updateBookSQL);
-//    $getLoanEndDateResult = $connection->prepare($getLoanEndDateSQL);
-
-                    $loanBookSQLResult->execute();
-                    $updateBookSQLResult->execute();
-//    $getLoanEndDateResult->execute();
+                    $borrowBook = $pdo->prepare("CALL borrowBook(?,?)");
+                    $borrowBook->bindParam(1,$bookID);
+                    $borrowBook->bindParam(2, $memberID);
+                    $borrowBook->execute();
                 echo "<br>" . "<h2>Loan completed successfully <br>"; }
                 } 
                 else {header("Location:LogInPage.php"); 
